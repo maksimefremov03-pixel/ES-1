@@ -1,0 +1,199 @@
+{
+    "questions": [
+        {
+            "component": "WeakCPU",
+            "text": "Процессор слабый?",
+            "yes": "Да",
+            "no": "Нет"
+        },
+        {
+            "component": "WeakGPU",
+            "text": "Видеокарта слабая?",
+            "yes": "Да",
+            "no": "Нет"
+        },
+        {
+            "component": "LowRAM",
+            "text": "Объем ОЗУ недостаточен?",
+            "yes": "Да",
+            "no": "Нет"
+        },
+        {
+            "component": "HeavyOS",
+            "text": "ОС потребляет много ресурсов?",
+            "yes": "Да",
+            "no": "Нет"
+        },
+        {
+            "component": "Dusty",
+            "text": "Компьютер запылен (давно не чистился)?",
+            "yes": "Да",
+            "no": "Нет"
+        },
+        {
+            "component": "Noisy",
+            "text": "Компьютер сильно шумит?",
+            "yes": "Да",
+            "no": "Нет"
+        },
+        {
+            "component": "A",
+            "text": "A?",
+            "yes": "Да",
+            "no": "Нет"
+        },
+        {
+            "component": "B",
+            "text": "B?",
+            "yes": "Да",
+            "no": "Нет"
+        }
+    ],
+    "costs": {
+        "WeakCPU": 8000.0,
+        "WeakGPU": 15000.0,
+        "LowRAM": 3000.0,
+        "HeavyOS": 1000.0,
+        "Dusty": 1500.0,
+        "Noisy": 2000.0,
+        "A": 1111.0,
+        "B": 2222.0
+    },
+    "cost_names": {
+        "WeakCPU": "Замена процессора",
+        "WeakGPU": "Замена видеокарты",
+        "LowRAM": "Увеличение ОЗУ",
+        "HeavyOS": "Оптимизация ОС",
+        "Dusty": "Чистка от пыли",
+        "Noisy": "Замена вентиляторов",
+        "A": "A",
+        "B": "B"
+    },
+    "node_labels": {
+        "WeakCPU": "Процессор",
+        "WeakGPU": "Видеокарта",
+        "LowRAM": "Память",
+        "HeavyOS": "Система",
+        "Dusty": "Пыль",
+        "Noisy": "Шум",
+        "LowFPS": "Низкий FPS",
+        "Stuttering": "Зависания",
+        "OverheatProb": "Перегрев",
+        "LowPerformance": "Производительность",
+        "B": "B",
+        "A": "A"
+    },
+    "tree_nodes": {
+        "input": [
+            "WeakCPU",
+            "WeakGPU",
+            "LowRAM",
+            "HeavyOS",
+            "Dusty",
+            "Noisy",
+            "A",
+            "B"
+        ],
+        "middle": [
+            "LowFPS",
+            "Stuttering",
+            "OverheatProb",
+            "C"
+        ],
+        "output": [
+            "LowPerformance"
+        ]
+    },
+    "tree_edges": [
+        [
+            "WeakGPU",
+            "LowFPS"
+        ],
+        [
+            "WeakCPU",
+            "LowFPS"
+        ],
+        [
+            "HeavyOS",
+            "Stuttering"
+        ],
+        [
+            "LowRAM",
+            "Stuttering"
+        ],
+        [
+            "Dusty",
+            "OverheatProb"
+        ],
+        [
+            "Noisy",
+            "OverheatProb"
+        ],
+        [
+            "LowFPS",
+            "LowPerformance"
+        ],
+        [
+            "Stuttering",
+            "LowPerformance"
+        ],
+        [
+            "OverheatProb",
+            "LowPerformance"
+        ],
+        [
+            "A",
+            "C"
+        ],
+        [
+            "B",
+            "C"
+        ],
+        [
+            "C",
+            "LowPerformance"
+        ]
+    ],
+    "cpt_LowFPS": {
+        "WeakGPU,WeakCPU": 0.95,
+        "WeakGPU,No": 0.7,
+        "No,WeakCPU": 0.4,
+        "No,No": 0.02
+    },
+    "cpt_Stuttering": {
+        "HeavyOS,LowRAM": 0.9,
+        "HeavyOS,No": 0.5,
+        "No,LowRAM": 0.45,
+        "No,No": 0.03
+    },
+    "cpt_OverheatProb": {
+        "Dusty,Noisy": 0.85,
+        "Dusty,No": 0.6,
+        "No,Noisy": 0.5,
+        "No,No": 0.05
+    },
+    "cpt_performance": {
+        "LowFPS,Stuttering,OverheatProb,C": 0.95,
+        "LowFPS,Stuttering,OverheatProb,No": 0.95,
+        "LowFPS,Stuttering,No,C": 0.95,
+        "LowFPS,Stuttering,No,No": 0.95,
+        "LowFPS,No,OverheatProb,C": 0.8,
+        "LowFPS,No,OverheatProb,No": 0.8,
+        "LowFPS,No,No,C": 0.8,
+        "LowFPS,No,No,No": 0.8,
+        "No,Stuttering,OverheatProb,C": 0.75,
+        "No,Stuttering,OverheatProb,No": 0.75,
+        "No,Stuttering,No,C": 0.75,
+        "No,Stuttering,No,No": 0.75,
+        "No,No,OverheatProb,C": 0.55,
+        "No,No,OverheatProb,No": 0.55,
+        "No,No,No,C": 0.55,
+        "No,No,No,No": 0.55
+    },
+    "cpt_C": {
+        "A,B": 0.5,
+        "A,No": 0.5,
+        "No,B": 0.5,
+        "No,No": 0.5
+    }
+}
